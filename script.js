@@ -63,11 +63,17 @@ function createLinkedList() {
     if (current.netNode !== null) return lastNode(current.nextNode);
   }
 
-  function at(index) {
-    const current = 0;
+  function at(index, node) {
+    if (head === null) return "Empty list";
+
+    const current = node || head;
+
+    if (index === 0) return current;
+
+    if (index > 0) return at(index - 1, current.nextNode);
   }
 
-  return { firstNode, lastNode, append, prepend, size };
+  return { firstNode, lastNode, append, prepend, size, at };
 }
 
 /* 
@@ -78,23 +84,24 @@ If list is empty
 const linkedList = createLinkedList();
 // console.log(linkedList.firstNode());
 
-// linkedList.append("A");
+linkedList.append("A");
 // console.log(linkedList.firstNode());
 
-// linkedList.append("B");
+linkedList.append("B");
 // console.log(linkedList.firstNode());
 
-// linkedList.append("C");
+linkedList.append("C");
 // console.log(linkedList.firstNode());
 
-linkedList.prepend("X");
+// linkedList.prepend("X");
 // console.log(linkedList.firstNode());
 
-linkedList.prepend("Y");
+// linkedList.prepend("Y");
 // console.log(linkedList.firstNode());
 
-linkedList.prepend("Z");
+// linkedList.prepend("Z");
 // console.log(linkedList.firstNode());
 
 console.log(linkedList.firstNode());
-console.log(linkedList.lastNode());
+// console.log(linkedList.lastNode());
+console.log(linkedList.at(2));
