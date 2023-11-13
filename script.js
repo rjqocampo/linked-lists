@@ -106,9 +106,33 @@ function createLinkedList() {
     if (current.nextNode !== null) return contains(value, current.nextNode);
   }
 
-  function find(value) {}
+  function find(value, node, index) {
+    let total = index || 0;
+    if (head === null) return "Empty list";
 
-  return { firstNode, lastNode, append, prepend, size, at, pop, contains };
+    const current = node || head;
+
+    console.log(current.value, value);
+
+    if (current.value === value) return total;
+    if (current.nextNode === null) return null;
+    if (current.nextNode !== null) {
+      total += 1;
+      return find(value, current.nextNode, total);
+    }
+  }
+
+  return {
+    firstNode,
+    lastNode,
+    append,
+    prepend,
+    size,
+    at,
+    pop,
+    contains,
+    find,
+  };
 }
 
 /* 
@@ -124,11 +148,11 @@ linkedList.append("B");
 
 linkedList.append("C");
 
-// linkedList.prepend("X");
+linkedList.prepend("X");
 
-// linkedList.prepend("Y");
+linkedList.prepend("Y");
 
-// linkedList.prepend("Z");
+linkedList.prepend("Z");
 
 // console.log(linkedList.firstNode());
 // console.log(linkedList.lastNode());
@@ -136,5 +160,6 @@ linkedList.append("C");
 // console.log(linkedList.size());
 // console.log(linkedList.at(2));
 // console.log(linkedList.pop());
-console.log(linkedList.contains());
+// console.log(linkedList.contains());
+// console.log(linkedList.find("D"));
 console.log(linkedList.firstNode());
