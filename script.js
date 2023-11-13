@@ -6,6 +6,8 @@ function createLinkedList() {
   let head = null;
 
   function firstNode() {
+    if (head === null) return "Empty list";
+
     return head;
   }
 
@@ -51,7 +53,21 @@ function createLinkedList() {
     }
   }
 
-  return { firstNode, append, prepend, size };
+  function lastNode(node) {
+    if (head === null) return "Empty list";
+
+    const current = node || head;
+
+    if (current.nextNode === null) return current;
+
+    if (current.netNode !== null) return lastNode(current.nextNode);
+  }
+
+  function at(index) {
+    const current = 0;
+  }
+
+  return { firstNode, lastNode, append, prepend, size };
 }
 
 /* 
@@ -62,22 +78,23 @@ If list is empty
 const linkedList = createLinkedList();
 // console.log(linkedList.firstNode());
 
-linkedList.append("A");
+// linkedList.append("A");
 // console.log(linkedList.firstNode());
 
-linkedList.append("B");
+// linkedList.append("B");
 // console.log(linkedList.firstNode());
 
-linkedList.append("C");
+// linkedList.append("C");
 // console.log(linkedList.firstNode());
 
-// linkedList.prepend("X");
+linkedList.prepend("X");
 // console.log(linkedList.firstNode());
 
-// linkedList.prepend("Y");
+linkedList.prepend("Y");
 // console.log(linkedList.firstNode());
 
-// linkedList.prepend("Z");
+linkedList.prepend("Z");
 // console.log(linkedList.firstNode());
 
-console.log(linkedList.size());
+console.log(linkedList.firstNode());
+console.log(linkedList.lastNode());
