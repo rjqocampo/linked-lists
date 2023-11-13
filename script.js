@@ -122,6 +122,17 @@ function createLinkedList() {
     }
   }
 
+  function toString(node) {
+    if (head === null) return "Empty list";
+
+    const current = node || head;
+
+    if (current.nextNode === null) return current.value;
+    if (current.nextNode !== null) {
+      return `${current.value} -> ${toString(current.nextNode)}`;
+    }
+  }
+
   return {
     firstNode,
     lastNode,
@@ -132,6 +143,7 @@ function createLinkedList() {
     pop,
     contains,
     find,
+    toString,
   };
 }
 
@@ -158,8 +170,8 @@ linkedList.prepend("Z");
 // console.log(linkedList.lastNode());
 
 // console.log(linkedList.size());
-// console.log(linkedList.at(2));
+// console.log(linkedList.at(3));
 // console.log(linkedList.pop());
-// console.log(linkedList.contains());
-// console.log(linkedList.find("D"));
-console.log(linkedList.firstNode());
+// console.log(linkedList.contains("C"));
+// console.log(linkedList.find("Z"));
+console.log(linkedList.toString());
