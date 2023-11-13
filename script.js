@@ -60,20 +60,41 @@ function createLinkedList() {
 
     if (current.nextNode === null) return current;
 
-    if (current.netNode !== null) return lastNode(current.nextNode);
+    if (current.nextNode !== null) return lastNode(current.nextNode);
   }
 
   function at(index, node) {
+    if (index >= size()) {
+      return "Index exceeds list";
+    }
+
     if (head === null) return "Empty list";
 
     const current = node || head;
 
     if (index === 0) return current;
-
     if (index > 0) return at(index - 1, current.nextNode);
   }
 
-  return { firstNode, lastNode, append, prepend, size, at };
+  function pop(node, prevNode) {
+    if (head === null) return "Empty list";
+    if (head.nextNode === null) {
+      head = null;
+      return;
+    }
+
+    const current = node || head;
+    const previous = prevNode || null;
+
+    if (current.nextNode === null) {
+      previous.nextNode = null;
+      return current;
+    }
+
+    if (current.nextNode !== null) return pop(current.nextNode, current);
+  }
+
+  return { firstNode, lastNode, append, prepend, size, at, pop };
 }
 
 /* 
@@ -102,6 +123,10 @@ linkedList.append("C");
 // linkedList.prepend("Z");
 // console.log(linkedList.firstNode());
 
-console.log(linkedList.firstNode());
+// console.log(linkedList.firstNode());
 // console.log(linkedList.lastNode());
-console.log(linkedList.at(2));
+
+// console.log(linkedList.size());
+// console.log(linkedList.at(2));
+console.log(linkedList.pop());
+console.log(linkedList.firstNode());
