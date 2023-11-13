@@ -94,7 +94,21 @@ function createLinkedList() {
     if (current.nextNode !== null) return pop(current.nextNode, current);
   }
 
-  return { firstNode, lastNode, append, prepend, size, at, pop };
+  function contains(value, node) {
+    if (head === null) return "Empty list";
+
+    const current = node || head;
+
+    console.log(current.value, value);
+
+    if (current.value === value) return true;
+    if (current.nextNode === null) return false;
+    if (current.nextNode !== null) return contains(value, current.nextNode);
+  }
+
+  function find(value) {}
+
+  return { firstNode, lastNode, append, prepend, size, at, pop, contains };
 }
 
 /* 
@@ -103,30 +117,24 @@ If list is empty
 */
 
 const linkedList = createLinkedList();
-// console.log(linkedList.firstNode());
 
 linkedList.append("A");
-// console.log(linkedList.firstNode());
 
 linkedList.append("B");
-// console.log(linkedList.firstNode());
 
 linkedList.append("C");
-// console.log(linkedList.firstNode());
 
 // linkedList.prepend("X");
-// console.log(linkedList.firstNode());
 
 // linkedList.prepend("Y");
-// console.log(linkedList.firstNode());
 
 // linkedList.prepend("Z");
-// console.log(linkedList.firstNode());
 
 // console.log(linkedList.firstNode());
 // console.log(linkedList.lastNode());
 
 // console.log(linkedList.size());
 // console.log(linkedList.at(2));
-console.log(linkedList.pop());
+// console.log(linkedList.pop());
+console.log(linkedList.contains());
 console.log(linkedList.firstNode());
